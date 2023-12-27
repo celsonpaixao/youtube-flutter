@@ -1,5 +1,6 @@
 class ApartamentsModel {
   final String descricao;
+  final String titlo;
   final String categoria;
   final String provincial;
   final String preco;
@@ -7,6 +8,7 @@ class ApartamentsModel {
   final String imagem;
 
   ApartamentsModel({
+    required this.titlo,
     required this.descricao,
     required this.categoria,
     required this.provincial,
@@ -18,29 +20,57 @@ class ApartamentsModel {
 
 List<ApartamentsModel> Apartamento = [
   ApartamentsModel(
-    descricao:
-        'Apartamentos de alto padrão: vantagens de morar em um - Estilo Fontana',
+    titlo: 'Apartamentos de alto padrão',
+    descricao: ' vantagens de morar em um - Estilo Fontana',
     categoria: '5 estrelas',
     provincial: 'Luanda',
     preco: '1.000.000',
     endereco: 'Talatona',
-    imagem: 'apartament_app/Assets/img/apartamento (0).jpg',
+    imagem: 'assets/img/apartamento1.jpg',
   ),
   ApartamentsModel(
-    descricao: 'Apartamento Duplex: Conheça esse modelo de Apartamento',
+    titlo: 'Apartamento Duplex',
+    descricao: 'Conheça esse modelo de Apartamento',
     categoria: '5 estrelas',
     provincial: 'Luanda',
     preco: '1.500.000',
     endereco: 'Talatona',
-    imagem: 'apartament_app/Assets/img/apartamento (1).jpg',
+    imagem: 'assets/img/apartamento2.png',
   ),
   ApartamentsModel(
-    descricao:
-        'Apartamentos personalizados: exclusividade na compra de imóveis de alto padrão | R.Yazbek',
+    titlo: 'Apartamentos personalizados',
+    descricao: 'exclusividade na compra de imóveis de alto padrão',
     categoria: '5 estrelas',
     provincial: 'Luanda',
     preco: '2.070.000',
     endereco: 'Patriota',
-    imagem: 'apartament_app/Assets/img/apartamento (2).jpg',
+    imagem: 'assets/img/apartamento3.jpg',
+  ),
+  ApartamentsModel(
+    titlo: 'Apartamentos de alto padrão',
+    descricao: 'vantagens de morar em um - Estilo Fontana',
+    categoria: '5 estrelas',
+    provincial: 'Luanda',
+    preco: '1.000.000',
+    endereco: 'Talatona',
+    imagem: 'assets/img/apartamento4.jpg',
+  ),
+  ApartamentsModel(
+    titlo: 'Apartamento Duplex ',
+    descricao: 'Conheça esse modelo de Apartamento',
+    categoria: '5 estrelas',
+    provincial: 'Luanda',
+    preco: '1.500.000',
+    endereco: 'Talatona',
+    imagem: 'assets/img/apartamento5.jpg',
+  ),
+  ApartamentsModel(
+    titlo: 'Apartamentos personalizados',
+    descricao: 'exclusividade na compra de imóveis de alto padrão',
+    categoria: '5 estrelas',
+    provincial: 'Luanda',
+    preco: '2.070.000',
+    endereco: 'Patriota',
+    imagem: 'assets/img/apartamento6.jpg',
   ),
 ];

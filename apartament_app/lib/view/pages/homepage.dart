@@ -1,23 +1,8 @@
+import 'package:apartament_app/view/components/horizontalist.dart';
+import 'package:apartament_app/view/components/verticallist.dart';
 import 'package:apartament_app/view/style/colores.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-class ApartamentsModel {
-  final String descricao;
-  final String categoria;
-  final String provincial;
-  final String preco;
-  final String endereco;
-  final String imagem;
-
-  ApartamentsModel(
-      {required this.descricao,
-      required this.categoria,
-      required this.provincial,
-      required this.preco,
-      required this.endereco,
-      required this.imagem});
-}
-
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -27,66 +12,31 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
-  List<ApartamentsModel> Apartamento = [
-  ApartamentsModel(
-    descricao:
-        'Apartamentos de alto padrão: vantagens de morar em um - Estilo Fontana',
-    categoria: '5 estrelas',
-    provincial: 'Luanda',
-    preco: '1.000.000',
-    endereco: 'Talatona',
-    imagem:
-        'https://www.estilofontana.com.br/blog/wp-content/uploads/2021/12/Sacada-gourmet-do-Villa-Celimontana-Residencial-Fontana-Construtora-1170x780.jpg',
-  ),
-  ApartamentsModel(
-    descricao: 'Apartamento Duplex: Conheça esse modelo de Apartamento',
-    categoria: '5 estrelas',
-    provincial: 'Luanda',
-    preco: '1.500.000',
-    endereco: 'Talatona',
-    imagem:
-        'https://incorposul.b-cdn.net/wp-content/uploads/2022/07/apartamento-duplex.jpg',
-  ),
-  ApartamentsModel(
-    descricao:
-        'Apartamentos personalizados: exclusividade na compra de imóveis de alto padrão | R.Yazbek',
-    categoria: '5 estrelas',
-    provincial: 'Luanda',
-    preco: '2.070.000',
-    endereco: 'Patriota',
-    imagem:
-        'https://www.ryazbek.com.br/wp-content/uploads/2019/11/original-ccba23ab2eb493b23837674485286bcf.jpg',
-  ),
-];
-
-  var apartamento = [];
-
-  Future<void> showapart() async {
-    apartamento = Apartamento;
-  }
-
-  @override
-  void initState() {
-    showapart;
-    super.initState();
-  }
-
+  var searchcontroller =
+      TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextButton(
+              style: ButtonStyle(
+                  overlayColor: MaterialStatePropertyAll(Colors.grey.shade100)),
               onPressed: () {},
-              child: const Text(
-                'Jakarta',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 18),
+              child: const Row(
+                children: [
+                  Text(
+                    'Jakarta',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 18),
+                  ),
+                  Icon(Icons.keyboard_arrow_down_rounded)
+                ],
               ),
             ),
             IconButton(
@@ -114,9 +64,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 child: TextButton(
-                  onPressed: () {
-                    print(apartamento.length.toString());
-                  },
+                  onPressed: () {},
                   child: const Text(
                     'Adicionar Apartamento',
                     style: TextStyle(
@@ -128,29 +76,59 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            Expanded(
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: apartamento.length,
-                itemBuilder: (context, index) {
-                  var item = apartamento[index];
-                  return Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 100, 20, 100),
-                    child: Container(
-                      clipBehavior: Clip.hardEdge,
-                      width: 200,
-                      height: 200,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                        image: DecorationImage(
-                          image: NetworkImage(item.image),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  );
-                },
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+              child: CupertinoSearchTextField(
+                placeholder: 'Pesquise por um apartamento',
+                controller: searchcontroller,
+                padding: const EdgeInsets.all(15),
+                style: const TextStyle(fontSize: 18, color: Colors.grey),
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                  borderRadius: const BorderRadius.all(Radius.circular(15)),
+                ),
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 0, 10, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Apartamentos',
+                    style: TextStyle(fontSize: 17),
+                  ),
+                  TextButton(
+                    style: ButtonStyle(
+                      overlayColor:
+                          MaterialStatePropertyAll(Colors.grey.shade100),
+                    ),
+                    onPressed: () {},
+                    child: Row(
+                      children: [
+                        Text(
+                          'Ver mais',
+                          style: TextStyle(
+                              color: Colors.grey.shade700,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        Icon(
+                          Icons.keyboard_arrow_right,
+                          color: Colors.grey.shade700,
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const Expanded(
+              flex: 3,
+              child: HorizontalList(),
+            ),
+            const Expanded(
+              flex: 3,
+              child: VerticalList(),
             ),
           ],
         ),
