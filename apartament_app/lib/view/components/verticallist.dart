@@ -1,5 +1,5 @@
-import 'package:apartament_app/models/apartaments_model.dart';
-import 'package:apartament_app/view/style/colores.dart';
+import 'package:apartament_app/controllers/apartamentscontroller.dart';
+import 'package:apartament_app/style/colors.dart';
 import 'package:flutter/material.dart';
 
 class VerticalList extends StatefulWidget {
@@ -10,91 +10,89 @@ class VerticalList extends StatefulWidget {
 }
 
 class _VerticalListState extends State<VerticalList> {
-  List<ApartamentsModel> apartamento = Apartamento;
-
-  Future<void> showapart() async {
-    apartamento = Apartamento;
-  }
-
-  @override
-  void initState() {
-    showapart;
-    super.initState();
-  }
-
+  var apartaments = ApartamentsController.showApartaments();
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      scrollDirection: Axis.vertical,
-      itemCount: apartamento.length,
+      itemCount: apartaments.length,
       itemBuilder: (context, index) {
-        var item = apartamento[index];
+        var item = apartaments[index];
         return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              height: 100,
-              width: 100,
-              child: Row(children: [
+          padding: const EdgeInsets.all(10.0),
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: 120,
+            child: Row(
+              children: [
                 Padding(
-                  padding: const EdgeInsets.all(2.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    clipBehavior: Clip.hardEdge,
                     width: 100,
                     height: 100,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderRadius: BorderRadius.circular(15),
                       image: DecorationImage(
-                          image: AssetImage(item.imagem), fit: BoxFit.cover),
+                        image: AssetImage(item.imagem),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
-                Container(
+                Padding(
+                  padding: const EdgeInsets.only(left: 10, top: 8),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
+                      SizedBox(
+                        width: 180,
                         child: Text(
                           item.titlo,
-                          style: const TextStyle(
+                          style: TextStyle(
+                            fontFamily: 'Raleway',
                             fontSize: 15,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.bold,
                           ),
+                          textAlign: TextAlign.center,
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
-                        child: Text(
-                          item.preco + ' kz',
-                          textAlign: TextAlign.right,
-                          style: TextStyle(
-                            color: blueprimary,
-                          ),
+                      Text(
+                        '${item.preco} / Ano',
+                        style: TextStyle(
+                          fontFamily: 'Raleway',
+                          color: blueprimary,
+                          fontSize: 15,
                         ),
+                        textAlign: TextAlign.center,
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           TextButton(
-                            onPressed: () {},
-                            child: const Text(
-                              'Editar',
-                              style: TextStyle(color: Colors.grey),
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {},
-                            child: const Text(
-                              'Eliminar',
-                              style: TextStyle(color: Colors.red),
-                            ),
-                          ),
+                              onPressed: () {},
+                              child: Text(
+                                'Editar',
+                                style: TextStyle(
+                                  fontFamily: 'Raleway',
+                                  color: Colors.black26
+                                ),
+                              )),
+                              TextButton(
+                              onPressed: () {},
+                              child: Text(
+                                'Eliminar',
+                                style: TextStyle(
+                                  fontFamily: 'Raleway',
+                                  color: Colors.red
+                                ),
+                              )),
                         ],
                       )
                     ],
                   ),
                 )
-              ]),
-            ));
+              ],
+            ),
+          ),
+        );
       },
     );
   }

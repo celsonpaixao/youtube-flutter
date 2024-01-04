@@ -1,5 +1,7 @@
-import 'package:apartament_app/view/pages/homepage.dart';
+import 'package:apartament_app/style/colors.dart';
+import 'package:apartament_app/view/homepage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,10 +16,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-       
+        
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: HomePage()
     );
   }
 }
