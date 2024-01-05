@@ -23,25 +23,27 @@ class _CreatApartamentState extends State<CreatApartament> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          children: [
-            Header(),
-            SingleChildScrollView(
-                child: Column(
-              children: [
-                InputDescricao(),
-                InputCategoria(),
-                InputPreco(),
-                InputProvincia(),
-                InputEndereco(),
-                InputImagem(),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: ButtomSave(),
-                ),
-              ],
-            )),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Header(),
+              SingleChildScrollView(
+                  child: Column(
+                children: [
+                  InputDescricao(),
+                  InputCategoria(),
+                  InputPreco(),
+                  InputProvincia(),
+                  InputEndereco(),
+                  InputImagem(),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: ButtomSave(),
+                  ),
+                ],
+              )),
+            ],
+          ),
         ),
       ),
     );
