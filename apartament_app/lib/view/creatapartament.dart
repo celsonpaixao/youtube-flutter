@@ -76,12 +76,7 @@ class ButtomSave extends StatelessWidget {
           ]),
       child: TextButton(
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HomePage(),
-            ),
-          );
+          Navigator.pop(context);
         },
         child: Text(
           "Salvar",
