@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:login_screan/style/colors.dart';
+import 'package:login_screan/style/inputdecorations.dart';
+import 'package:login_screan/style/textstyles.dart';
 
 class JoinUsPasswordInput extends StatelessWidget {
   const JoinUsPasswordInput({
@@ -11,33 +12,20 @@ class JoinUsPasswordInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      
+    return TextFormField(
       obscureText: true,
       controller: joinuspasswordcontroller,
-      style: TextStyle(
-        fontFamily: 'Poppins',
-        color: Colors.black54,
-        fontSize: 13
-      ),
-      decoration: InputDecoration(
-        hintText: 'Password',
-        hintStyle: TextStyle(
-          fontFamily: 'Poppins'
-        ),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: bluesecundary, width: 3),
-              borderRadius: BorderRadius.circular(15)),
-          enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: bluesecundary, width: 3),
-              borderRadius: BorderRadius.circular(15)),
-          filled: true,
-          fillColor: blue3,
-          suffixIcon: Icon(
-            Icons.lock_rounded,
-            color: bluesecundary,
-          ),
-          ),
+      style: TextStyleInputLoginandJoinUs,
+      validator: (value) {
+        if (value.toString().isEmpty) {
+          return 'Informe a password para continuar ';
+        } else if (value.toString().length < 5) {
+          return 'Esta password não é válido';
+        }
+
+        return null;
+      },
+      decoration: InputdecorationLoginandJoinUs('Password',Icons.lock),
     );
   }
 }

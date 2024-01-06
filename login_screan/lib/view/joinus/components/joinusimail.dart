@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:login_screan/style/colors.dart';
+import 'package:login_screan/style/inputdecorations.dart';
+import 'package:login_screan/style/textstyles.dart';
 
 class JoinUsEmailInput extends StatelessWidget {
   const JoinUsEmailInput({
@@ -11,27 +12,24 @@ class JoinUsEmailInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       keyboardType: TextInputType.emailAddress,
       controller: joinusuemailcontroller,
-      style:
-          TextStyle(fontFamily: 'Poppins', color: Colors.black54, fontSize: 13),
-      decoration: InputDecoration(
-        hintText: 'Email',
-        hintStyle: TextStyle(fontFamily: 'Poppins'),
-        focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: bluesecundary, width: 3),
-            borderRadius: BorderRadius.circular(15)),
-        enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: bluesecundary, width: 3),
-            borderRadius: BorderRadius.circular(15)),
-        filled: true,
-        fillColor: blue3,
-        suffixIcon: Icon(
-          Icons.send_rounded,
-          color: bluesecundary,
-        ),
-      ),
+      style: TextStyleInputLoginandJoinUs,
+      validator: (value) {
+         if (value.toString().isEmpty) {
+          return 'Informe o email para continuar';
+        }
+        else if (value.toString().length < 5) {
+          return 'Este email não é válido';
+        }
+       else  if (!value.toString().contains('@')) {
+          return 'Um email precisa conter @';
+        }
+        return null;
+        
+      },
+      decoration: InputdecorationLoginandJoinUs('Email', Icons.send_rounded),
     );
   }
 }
